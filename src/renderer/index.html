@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; script-src 'self'" />
+    <title>Hue Switch Studio</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- ── connect / pair ─────────────────────────────────────────────── -->
+    <section id="connect" class="screen">
+      <div class="card connect-card">
+        <h1>Hue Switch Studio</h1>
+        <p class="lede">
+          Configure all six buttons on your Friends of Hue switches — including the two the
+          official app can't reach — with a separate zone for short press and hold.
+        </p>
+
+        <div id="connect-step-find">
+          <div class="row">
+            <button id="btn-discover" class="primary">Find my bridge</button>
+            <span class="or">or</span>
+            <input id="input-host" type="text" placeholder="192.168.0.24" spellcheck="false" />
+            <button id="btn-probe">Use this IP</button>
+          </div>
+          <ul id="discover-list" class="bridge-list"></ul>
+        </div>
+
+        <div id="connect-step-pair" class="hidden">
+          <div class="pair-box">
+            <div class="pair-target">
+              <strong id="pair-name">Hue Bridge</strong>
+              <span id="pair-host" class="mono"></span>
+            </div>
+            <p>Press the round <strong>link button</strong> on top of the bridge, then continue within 30&nbsp;seconds.</p>
+            <div class="row">
+              <button id="btn-pair" class="primary">I pressed it — connect</button>
+              <button id="btn-pair-back" class="ghost">Back</button>
+            </div>
+          </div>
+        </div>
+
+        <p id="connect-error" class="error hidden"></p>
+      </div>
+    </section>
+
+    <!-- ── main editor ────────────────────────────────────────────────── -->
+    <section id="editor" class="screen hidden">
+      <aside class="sidebar">
+        <header class="sidebar-head">
+          <h2>Switches</h2>
+          <button id="btn-reload" class="icon" title="Reload from bridge">&#x21bb;</button>
+        </header>
+        <ul id="switch-list" class="switch-list"></ul>
+        <footer class="sidebar-foot">
+          <button id="btn-backup" class="ghost small">Back up all</button>
+          <button id="btn-restore" class="ghost small">Restore…</button>
+          <button id="btn-reveal" class="ghost small">Open folder</button>
+          <div id="conn-info" class="conn-info mono"></div>
+        </footer>
+      </aside>
+
+      <main class="content">
+        <header class="content-head">
+          <div>
+            <h2 id="sw-name">—</h2>
+            <p id="sw-meta" class="muted mono"></p>
+          </div>
+          <div class="head-actions">
+            <span id="dirty-flag" class="dirty hidden">unsaved changes</span>
+            <button id="btn-revert" class="ghost">Revert</button>
+            <button id="btn-save" class="primary">Save to bridge</button>
+          </div>
+        </header>
+
+        <div id="issues" class="issues hidden"></div>
+        <div id="buttons" class="buttons"></div>
+
+        <div id="log" class="log hidden"></div>
+      </main>
+    </section>
+
+    <div id="toast" class="toast hidden"></div>
+    <script src="renderer.js"></script>
+  </body>
+</html>

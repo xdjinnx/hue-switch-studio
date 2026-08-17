@@ -1,0 +1,13 @@
+node_modules/
+
+# Local Claude Code settings (machine-specific)
+.claude/settings.local.json
+
+# Never commit bridge credentials or backups if they ever land in the repo
+bridge.json
+backups/
+*.log
+
+# Bridge dumps used by the round-trip test: real captures of a private home
+# (room/zone/scene/device names and every resource UUID). Kept local only.
+test/fixtures/

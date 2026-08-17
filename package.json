@@ -1,0 +1,16 @@
+{
+  "name": "hue-switch-studio",
+  "version": "1.0.0",
+  "description": "Configure Philips Hue / Friends of Hue switches beyond what the official app allows: all 6 buttons, per-button zones, and separate zones for short vs long press.",
+  "main": "src/main/main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "demo": "electron . --demo"
+  },
+  "author": "peter",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^32.0.0"
+  }
+}
