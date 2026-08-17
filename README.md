@@ -8,8 +8,7 @@ official Hue app allows.
 - **A different zone or room per button**, so one switch can drive several parts of the house.
 - **A different target for short press than for hold**, which the official app does not offer.
 
-![A six-button Friends of Hue switch open in Hue Switch Studio, with a short press and a hold
-configured per button](img/demo.png)
+![A six-button Friends of Hue switch open in Hue Switch Studio, with a short press and a hold configured per button](https://raw.githubusercontent.com/xdjinnx/hue-switch-studio/main/img/demo.png)
 
 Everything it configures runs **on the bridge**. Once you have saved, your switches keep
 working with this app closed and your PC switched off.
@@ -68,39 +67,6 @@ are silently impossible — it says so before you save rather than letting the w
   Buttons 5 and 6 are invisible to the official app and carry no such risk.
 - **If a button was pointed at one individual bulb by the Hue app, that survives** a save
   here, but this UI works at room and zone level and cannot edit it.
-
-## Layout
-
-```
-src/main/bridge.js   pinned HTTPS client, discovery, pairing, bridge API helpers
-src/main/model.js    the domain logic: parse, build, constraints, validation
-src/main/store.js    application key at rest
-src/main/main.js     window, IPC, backup and restore
-src/renderer/        the UI
-test/roundtrip.js    fidelity test: parse a switch, rebuild it, assert nothing changed
-```
-
-## Development
-
-`node test/roundtrip.js` parses every switch from a set of bridge dumps, rebuilds each one
-with no edits, and asserts the result is identical to what the bridge holds. It guards the
-"leave alone what you did not edit" promise above.
-
-Its fixtures are captures of a live bridge and are **not committed** — a bridge dump names
-every room, zone, scene, and device in someone's home. To run the test, populate
-`test/fixtures/` from your own bridge with one file per resource type (`device`, `room`,
-`zone`, `scene`, `button`, `bridge_home`, `behavior_instance`), each holding the verbatim
-`GET /clip/v2/resource/<type>` response body, plus `v1_rules.json` holding
-`GET /api/<key>/rules`.
-
-### If the app will not start after install
-
-Electron's postinstall can download its binary and then fail to extract it, leaving
-`node_modules/electron/dist` almost empty. If `npm start` does nothing useful, check that
-`node_modules/electron/dist/electron.exe` exists before looking for a bug. To fix it, extract
-`electron-v*-win32-x64.zip` from Electron's download cache
-(`%LOCALAPPDATA%/electron/Cache/<hash>/` on Windows) into `node_modules/electron/dist`, and
-write `electron.exe` — with no trailing newline — into `node_modules/electron/path.txt`.
 
 ## License
 
